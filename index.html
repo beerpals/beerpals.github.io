@@ -112,6 +112,10 @@
   background-color: rgb(0,122,41);
 }
 
+.flex-container.last-year {
+  flex-direction: column;
+}
+
 
     </style>
 </head>
@@ -120,7 +124,21 @@
 <div ng-controller="BeerCtrl" class="body">
   <h1>Beer Pals</h1>
 
-<section class="year chart">
+<section class="chart">
+  <h4 class="center">Last Year</h4>
+  <div class="flex-container last-year">
+
+    <div class="flex-row contributions"
+      ng-repeat="day in analytics.lastYearArr"
+      ng-class="getContributionClass(day.length, maxLastYear)"
+    >
+      {{day.length}}
+    </div>
+  </div>
+</section>
+
+
+<section class="lastyear chart">
   <h4 class="center">Year</h4>
   <div class="flex-container">
     <div class="flex-row title text">
@@ -246,6 +264,7 @@ controller('BeerCtrl', function ($scope, $http) {
   };
 
   $scope.commits = [];
+  var lastYearArr = initArray(366);
   var yearArr = initArray(12);
   var weekArr = initArray(7);
   var dayArr = initArray(24);
@@ -255,7 +274,8 @@ controller('BeerCtrl', function ($scope, $http) {
     'yearArr': yearArr,
     'weekArr': weekArr,
     'dayArr': dayArr,
-    'weekhoursArr': weekhoursArr
+    'weekhoursArr': weekhoursArr,
+    'lastYearArr': lastYearArr
   };
 
   $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits', {})
@@ -282,14 +302,25 @@ controller('BeerCtrl', function ($scope, $http) {
         $scope.analytics['dayArr'][hour].push(c);
         $scope.analytics['weekhoursArr'][day][hour].push(c);
 
+        var now = new Date()
+        var oneYearAgo = new Date();
+        oneYearAgo.setYear(now.getFullYear() - 1);
+        oneYearAgo.setHours(0,0,0);
+
+        var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
+        $scope.analytics['lastYearArr'][index].push(c);
+
         $scope.commits.push(c);
       }
     });
 
+    $scope.maxLastYear = getMax($scope.analytics.lastYearArr);
     $scope.maxYear = getMax($scope.analytics.yearArr);
     $scope.maxWeek = getMax($scope.analytics.weekArr);
     $scope.maxDay = getMax($scope.analytics.dayArr);
     $scope.maxWeekHours = getMaxDouble($scope.analytics.weekhoursArr);
+
+    console.log($scope.analytics['lastYearArr']);
     
   });
 
