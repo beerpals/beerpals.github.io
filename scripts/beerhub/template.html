@@ -1,0 +1,113 @@
+<h1>{{user}}</h1>
+
+<section class="chart">
+  <h4 class="center">Last Year</h4>
+  <div class="flex-container last-year">
+
+    <div class="flex-row contributions"
+      ng-repeat="day in analytics.lastYearArr"
+      ng-class="getContributionClass(day.length, maxLastYear)"
+    >
+      {{day.length}}
+    </div>
+  </div>
+</section>
+
+
+<section class="lastyear chart">
+  <h4 class="center">Year</h4>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Month
+    </div>
+    <div class="flex-row text" ng-repeat="month in months">
+      {{strings.SHORTMONTH[$index]}}
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Contributions
+    </div>
+    <div class="flex-row contributions"
+      ng-repeat="month in analytics.yearArr"
+      ng-class="getContributionClass(month.length, maxYear)"
+    >
+    </div>
+  </div>
+</section>
+
+
+<section class="week chart">
+<h4 class="center">Week</h4>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Day
+    </div>
+    <div class="flex-row text" ng-repeat="day in days">
+      {{strings.SHORTDAY[$index]}}
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Contributions
+    </div>
+    <div class="flex-row contributions"
+      ng-repeat="day in analytics.weekArr"
+      ng-class="getContributionClass(day.length, maxWeek)"
+    >
+    </div>
+  </div>
+</section>
+
+
+
+<section class="day chart">
+  <h4 class="center">Day</h4>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Hour
+    </div>
+    <div class="flex-row text" ng-repeat="hour in hours">
+      {{hour}}
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Contributions
+    </div>
+    <div class="flex-row contributions"
+      ng-repeat="hour in analytics.dayArr"
+      ng-class="getContributionClass(hour.length, maxDay)"
+    >
+    </div>
+  </div>
+</section>
+
+
+
+<section class="weekhours chart">
+  <h4 class="center">Schedule</h4>
+  <div class="flex-container">
+    <div class="flex-row title text">
+      Day / Hour
+    </div>
+    <div class="flex-row text" ng-repeat="hour in dayHours">
+      {{hour}}
+    </div>
+  </div>
+
+  <div ng-repeat="day in analytics.weekhoursArr" class="flex-container">
+    <div class="flex-row title text">
+      {{strings.DAY[$index]}}
+    </div>
+    <div class="flex-row contributions"
+      ng-repeat="hour in day"
+      ng-class="getContributionClass(hour.length, maxWeekHours)"
+    >
+    </div>
+  </div>
+</section>
+
+  <p ng-repeat="commit in commits">
+    {{commit.message}} | {{commit.date | date}}
+  </p>
