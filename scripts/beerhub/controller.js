@@ -190,8 +190,8 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
 
   $scope.getContributionPosition = function(day, week){
     var style = {
-      'top': day * 14 + 'px',
-      'left': Math.floor(week) * 14 + 'px'
+      'top': day * 15 + 'px',
+      'left': Math.floor(week) * 15 + 'px'
     };
     return style;
   };
