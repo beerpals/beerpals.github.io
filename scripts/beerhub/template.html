@@ -2,18 +2,19 @@
 
 <section class="chart">
   <h4 class="center">Last Year</h4>
-  <div class="flex-container last-year">
 
-    <div class="flex-row contributions"
+  <div class="last-year">
+
+    <div class="contributions last-year-contribution"
       ng-repeat="day in analytics.lastYearArr"
-      ng-class="getContributionClass(day.length, maxLastYear)"
+      ng-class="[getContributionClass(day.length, maxLastYear)]"
+      ng-style="getContributionPosition((firstDay + $index) % 7, (firstDay + $index) / 7)"
     >
-      {{day.length}}
     </div>
   </div>
 </section>
 
-
+ 
 <section class="lastyear chart">
   <h4 class="center">Year</h4>
   <div class="flex-container">

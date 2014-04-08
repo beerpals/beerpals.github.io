@@ -58,10 +58,11 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
         var oneYearAgo = new Date();
         oneYearAgo.setYear(now.getFullYear() - 1);
         oneYearAgo.setHours(0,0,0);
+        $scope.firstDay = oneYearAgo.getDay();
 
         var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
-        $scope.analytics['lastYearArr'][index].push(c);
 
+        $scope.analytics['lastYearArr'][index].push(c);
         $scope.commits.push(c);
       }
     });
@@ -186,4 +187,13 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
       return 'contributions-most';
     }
   };
+
+  $scope.getContributionPosition = function(day, week){
+    var style = {
+      'top': day * 14 + 'px',
+      'left': Math.floor(week) * 14 + 'px'
+    };
+    return style;
+  };
+
 });
