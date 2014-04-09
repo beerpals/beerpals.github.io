@@ -77,7 +77,11 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
     
   });
 
+  $scope.totalContributions = 0;
+
   var getStreaks = function(lastYearArr){
+    var total = 0;
+
     var longestStreak = {
       'startIndex': undefined,
       'endIndex': undefined,
@@ -92,6 +96,7 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
 
       if (beers > 0) {
         streakInterval++;
+        total += beers;
       }
       else {
         if (streakInterval > longestStreak.days) {
@@ -109,6 +114,7 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
       longestStreak['days'] = streakInterval;
     }
 
+    $scope.totalContributions = total;
     $scope.longestStreak = longestStreak;
 
 
