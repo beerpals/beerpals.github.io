@@ -31,6 +31,24 @@
     <p>Longest streak</p>
   </div>
 
+  <div>
+    <h4>
+      <ng-pluralize
+        count="currentStreak.days"
+        when="{
+          '0': '{{currentStreak.days}} days',
+          '1': '{{currentStreak.days}} day',
+          'other': '{{currentStreak.days}} days'
+        }"
+      ></ng-pluralize>
+    </h4>
+    <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+      {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
+      {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
+    </p>
+    <p>Current streak</p>
+  </div>
+
 </section>
 
  

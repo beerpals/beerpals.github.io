@@ -110,6 +110,32 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
     }
 
     $scope.longestStreak = longestStreak;
+
+
+    var currentStreak = {
+      'startIndex': undefined,
+      'endIndex': undefined,
+      'days': 0
+    };
+
+    streakInterval = 0;
+    for (i=lastYearArr.length - 1; i>=0; i--){
+      var beers = lastYearArr[i].length;
+      if (beers > 0) {
+        streakInterval++;
+        currentStreak['startIndex'] = i;
+        currentStreak['endIndex'] = i + streakInterval - 1;
+        currentStreak['days'] = streakInterval;
+      }
+      else if (i === lastYearArr.length - 1){
+        continue;
+      }
+      else {
+        break;
+      }
+    }
+
+    $scope.currentStreak = currentStreak;
   };
 
   var getMax = function(arr){
