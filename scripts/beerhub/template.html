@@ -15,6 +15,17 @@
 
   <div>
     <h4>
+      {{totalContributions}} total
+    </h4>
+    <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+      {{getContributionDate(0, analytics.lastYearArr) | date}} - 
+      {{getContributionDate(analytics.lastYearArr.length, analytics.lastYearArr) | date}}
+    </p>
+    <p>Year of contributions</p>
+  </div>
+
+  <div>
+    <h4>
       <ng-pluralize
         count="longestStreak.days"
         when="{
