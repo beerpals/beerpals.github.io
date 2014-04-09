@@ -73,9 +73,44 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
     $scope.maxDay = getMax($scope.analytics.dayArr);
     $scope.maxWeekHours = getMaxDouble($scope.analytics.weekhoursArr);
 
-    console.log($scope.analytics['lastYearArr']);
+    getStreaks($scope.analytics.lastYearArr);
     
   });
+
+  var getStreaks = function(lastYearArr){
+    var longestStreak = {
+      'startIndex': undefined,
+      'endIndex': undefined,
+      'days': 0
+    };
+
+    var streakInterval = 0;
+
+    var i;
+    for (i=0; i<lastYearArr.length; i++){
+      var beers = lastYearArr[i].length;
+
+      if (beers > 0) {
+        streakInterval++;
+      }
+      else {
+        if (streakInterval > longestStreak.days) {
+          longestStreak['startIndex'] = i - streakInterval;
+          longestStreak['endIndex'] = i - 1;
+          longestStreak['days'] = streakInterval;
+        }
+        streakInterval = 0;
+      }
+    }
+
+    if (streakInterval > longestStreak.days) {
+      longestStreak['startIndex'] = i - streakInterval;
+      longestStreak['endIndex'] = i;
+      longestStreak['days'] = streakInterval;
+    }
+
+    $scope.longestStreak = longestStreak;
+  };
 
   var getMax = function(arr){
     var max = 0;
@@ -194,6 +229,15 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
       'left': Math.floor(week) * 15 + 'px'
     };
     return style;
+  };
+
+  $scope.getContributionDate = function(index, lastYearArr){
+    var diffdays = lastYearArr.length - index - 1;
+    var now = new Date();
+    var contributionDate = new Date();
+    contributionDate.setDate(now.getDate() - diffdays);
+    contributionDate.setHours(0,0,0);
+    return contributionDate;
   };
 
 });
