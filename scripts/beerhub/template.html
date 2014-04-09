@@ -19,7 +19,7 @@
     </h4>
     <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
       {{getContributionDate(0, analytics.lastYearArr) | date}} - 
-      {{getContributionDate(analytics.lastYearArr.length, analytics.lastYearArr) | date}}
+      {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
     </p>
     <p>Year of contributions</p>
   </div>
