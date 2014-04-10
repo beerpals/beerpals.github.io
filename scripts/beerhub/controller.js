@@ -110,7 +110,7 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
 
     if (streakInterval > longestStreak.days) {
       longestStreak['startIndex'] = i - streakInterval;
-      longestStreak['endIndex'] = i;
+      longestStreak['endIndex'] = i - 1;
       longestStreak['days'] = streakInterval;
     }
 
