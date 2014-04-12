@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('beerApp').
-controller('BeerCtrl', function ($scope, $http, $routeParams) {
+controller('BeerCtrl', function ($scope, $http, $routeParams, $filter) {
 
   $scope.user = $routeParams.user;
 
@@ -258,7 +258,7 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
   $scope.getContributionPosition = function(day, week){
     var style = {
       'top': day * 15 + 'px',
-      'left': Math.floor(week) * 15 + 'px'
+      'left': 80 + Math.floor(week) * 15 + 'px'
     };
     return style;
   };
@@ -270,6 +270,25 @@ controller('BeerCtrl', function ($scope, $http, $routeParams) {
     contributionDate.setDate(now.getDate() - diffdays);
     contributionDate.setHours(0,0,0);
     return contributionDate;
+  };
+
+  $scope.getTooltip = function(contributions, contributionDate){
+    var html = '';
+    if (contributions === 0) {
+      html += '<strong>No contributions</strong>';
+    }
+    else if (contributions === 1) {
+      html += '<strong>' + contributions + ' contribution</strong>';
+    }
+    else if (contributions > 1) {
+      html += '<strong>' + contributions + ' contributions</strong>';
+    }
+
+    if (contributionDate) {
+      html += ' on ' + $filter('date')(contributionDate, 'longDate');
+    }
+
+    return html;
   };
 
 });
