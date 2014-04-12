@@ -9,6 +9,7 @@
       ng-class="[getContributionClass(day.length, maxLastYear)]"
       ng-style="getContributionPosition((firstDay + $index) % 7, (firstDay + $index) / 7)"
       tooltip-html-unsafe="{{getTooltip(day.length, getContributionDate($index, analytics.lastYearArr))}}"
+      ng-click="browseBeers(day, getContributionDate($index, analytics.lastYearArr))"
     >
     </div>
   </div>
@@ -58,6 +59,24 @@
       {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
     </p>
     <p>Current streak</p>
+  </div>
+
+  <div ng-show="period.date" class="contribution-activity">
+    <h4>Period: {{period.date | date}}</h4>
+    <p>
+      <ng-pluralize
+        count="period.beers.length"
+        when="{
+          '0': '{{period.beers.length}} beers',
+          '1': '{{period.beers.length}} beer',
+          'other': '{{period.beers.length}} beers'
+        }"
+      ></ng-pluralize>
+    </p>
+    <p ng-repeat="beer in period.beers | reverse">
+      {{beer.message}}
+    </p>
+    <button class="btn btn-link" ng-click="browseBeers()">clear</button>
   </div>
 
 </section>
