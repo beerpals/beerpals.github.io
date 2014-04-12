@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('beerApp', ['ngRoute'])
+angular.module('beerApp', ['ngRoute', 'ui.bootstrap'])
 .config(function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
   $routeProvider
