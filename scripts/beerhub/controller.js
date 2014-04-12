@@ -291,4 +291,11 @@ controller('BeerCtrl', function ($scope, $http, $routeParams, $filter) {
     return html;
   };
 
+  $scope.period = {};
+
+  $scope.browseBeers = function(beers, date){
+    $scope.period.beers = beers;
+    $scope.period.date = date;
+  };
+
 });
