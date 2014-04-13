@@ -3,7 +3,7 @@
 <section class="chart">
   <h4 class="text-center">Your contributions</h4>
 
-  <div class="last-year">
+  <div class="chart-last-year">
     <div class="contributions contribution-last-year"
       ng-repeat="day in analytics.lastYearArr"
       ng-class="[
@@ -17,70 +17,78 @@
     </div>
   </div>
 
-  <div>
-    <h4>
-      {{totalContributions}} total
-    </h4>
-    <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-      {{getContributionDate(0, analytics.lastYearArr) | date}} - 
-      {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
-    </p>
-    <p>Year of contributions</p>
+  <div class="last-year-info">
+    <div class="last-year-strike">
+      <h4>
+        {{totalContributions}} total
+      </h4>
+      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+        <small>
+        {{getContributionDate(0, analytics.lastYearArr) | date}} - 
+        {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
+        </small>
+      </p>
+      <p>Year of contributions</p>
+    </div>
+
+    <div class="last-year-strike">
+      <h4>
+        <ng-pluralize
+          count="longestStreak.days"
+          when="{
+            '0': '{{longestStreak.days}} days',
+            '1': '{{longestStreak.days}} day',
+            'other': '{{longestStreak.days}} days'
+          }"
+        ></ng-pluralize>
+      </h4>
+      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+        <small>
+        {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
+        {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
+        </small>
+      </p>
+      <p>Longest streak</p>
+    </div>
+
+    <div class="last-year-strike">
+      <h4>
+        <ng-pluralize
+          count="currentStreak.days"
+          when="{
+            '0': '{{currentStreak.days}} days',
+            '1': '{{currentStreak.days}} day',
+            'other': '{{currentStreak.days}} days'
+          }"
+        ></ng-pluralize>
+      </h4>
+      <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+        <small>
+        {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
+        {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
+        </small>
+      </p>
+      <p>Current streak</p>
+    </div>
   </div>
 
-  <div>
-    <h4>
-      <ng-pluralize
-        count="longestStreak.days"
-        when="{
-          '0': '{{longestStreak.days}} days',
-          '1': '{{longestStreak.days}} day',
-          'other': '{{longestStreak.days}} days'
-        }"
-      ></ng-pluralize>
-    </h4>
-    <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-      {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
-      {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
-    </p>
-    <p>Longest streak</p>
-  </div>
-
-  <div>
-    <h4>
-      <ng-pluralize
-        count="currentStreak.days"
-        when="{
-          '0': '{{currentStreak.days}} days',
-          '1': '{{currentStreak.days}} day',
-          'other': '{{currentStreak.days}} days'
-        }"
-      ></ng-pluralize>
-    </h4>
-    <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
-      {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
-      {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
-    </p>
-    <p>Current streak</p>
-  </div>
-
-  <div ng-show="period.date" class="contribution-activity">
-    <h4>Period: {{period.date | date}}</h4>
-    <p>
-      <ng-pluralize
-        count="period.beers.length"
-        when="{
-          '0': '{{period.beers.length}} beers',
-          '1': '{{period.beers.length}} beer',
-          'other': '{{period.beers.length}} beers'
-        }"
-      ></ng-pluralize>
-    </p>
-    <p ng-repeat="beer in period.beers | reverse">
-      {{beer.message}}
-    </p>
-    <button class="btn btn-link" ng-click="browseBeers()">clear</button>
-  </div>
+    <div ng-show="period.date" class="contribution-activity">
+      <h4>Period: {{period.date | date}}</h4>
+      <p>
+        <ng-pluralize
+          count="period.beers.length"
+          when="{
+            '0': '{{period.beers.length}} beers',
+            '1': '{{period.beers.length}} beer',
+            'other': '{{period.beers.length}} beers'
+          }"
+        ></ng-pluralize>
+      </p>
+      <p ng-repeat="beer in period.beers | reverse">
+        {{beer.message}}
+      </p>
+      <button class="btn btn-link" ng-click="browseBeers()">clear</button>
+    </div>
 
 </section>
 
