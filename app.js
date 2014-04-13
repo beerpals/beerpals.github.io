@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('beerApp', ['ngRoute', 'ui.bootstrap'])
+angular.module('BeerPallsApp', ['ngRoute', 'ui.bootstrap'])
 .config(function ($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
   $routeProvider
     .when('/', {
-      templateUrl: 'scripts/beerhub/template.html',
-      controller: 'BeerCtrl'
+      templateUrl: 'components/beerhub/template.html',
+      controller: 'BeerHubCtrl'
     })
     .when('/:user', {
-      templateUrl: 'scripts/beerhub/template.html',
-      controller: 'BeerCtrl',
+      templateUrl: 'components/beerhub/template.html',
+      controller: 'BeerHubCtrl',
     })
     .otherwise({
       redirectTo: '/'

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('beerApp').
-controller('BeerCtrl', function ($scope, $http, $routeParams, $filter) {
+angular.module('BeerPallsApp').
+controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
 
   $scope.user = $routeParams.user;
 
