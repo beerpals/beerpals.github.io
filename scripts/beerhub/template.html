@@ -4,10 +4,13 @@
   <h4 class="center">Your contributions</h4>
 
   <div class="last-year">
-    <div class="contributions last-year-contribution"
+    <div class="contributions contribution-last-year"
       ng-repeat="day in analytics.lastYearArr"
-      ng-class="[getContributionClass(day.length, maxLastYear)]"
-      ng-style="getContributionPosition((firstDay + $index) % 7, (firstDay + $index) / 7)"
+      ng-class="[
+        getContributionClass(day.length, maxLastYear),
+        getContributionDayClass((firstDay + $index) % 7),
+        getContributionWeekClass((firstDay + $index) / 7)
+      ]"
       tooltip-html-unsafe="{{getTooltip(day.length, getContributionDate($index, analytics.lastYearArr))}}"
       ng-click="browseBeers(day, getContributionDate($index, analytics.lastYearArr))"
     >

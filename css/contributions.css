@@ -1,0 +1,115 @@
+.contributions {
+  -webkit-transition: background-color 250ms linear;
+  -moz-transition: background-color 250ms linear;
+  -o-transition: background-color 250ms linear;
+  -ms-transition: background-color 250ms linear;
+  transition: background-color 250ms linear;
+}
+
+.contributions-none {
+  background-color: rgb(240,240,240);
+  border: 1px solid rgb(240,240,240);
+}
+
+.contributions-low {
+  background-color: rgb(211,240,141);
+  border: 1px solid rgb(211,240,141);
+}
+
+.contributions-medium {
+  background-color: rgb(126,213,112);
+  border: 1px solid rgb(126,213,112);
+}
+
+.contributions-high {
+  background-color: rgb(0,182,75);
+  border: 1px solid rgb(0,182,75);
+}
+
+.contributions-most {
+  background-color: rgb(0,122,41);
+  border: 1px solid rgb(0,122,41);
+}
+
+.contributions:hover,
+.contributions-none:hover,
+.contributions-low:hover,
+.contributions-medium:hover,
+.contributions-high:hover,
+.contributions-most:hover {
+  border: 1px solid rgb(80,80,80);
+}
+
+.contribution-last-year {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+}
+
+.contribution-activity {
+  margin: 20px auto;
+}
+
+.contributions-day-0 { top: 0px; }
+.contributions-day-1 { top: 15px; }
+.contributions-day-2 { top: 30px; }
+.contributions-day-3 { top: 45px; }
+.contributions-day-4 { top: 60px; }
+.contributions-day-5 { top: 75px; }
+.contributions-day-6 { top: 90px; }
+
+.contributions-week-0 { left: 80px; }
+.contributions-week-1 { left: 95px; }
+.contributions-week-2 { left: 110px; }
+.contributions-week-3 { left: 125px; }
+.contributions-week-4 { left: 140px; }
+.contributions-week-5 { left: 155px; }
+.contributions-week-6 { left: 170px; }
+.contributions-week-7 { left: 185px; }
+.contributions-week-8 { left: 200px; }
+.contributions-week-9 { left: 215px; }
+.contributions-week-10 { left: 230px; }
+.contributions-week-11 { left: 245px; }
+.contributions-week-12 { left: 260px; }
+.contributions-week-13 { left: 275px; }
+.contributions-week-14 { left: 290px; }
+.contributions-week-15 { left: 305px; }
+.contributions-week-16 { left: 320px; }
+.contributions-week-17 { left: 335px; }
+.contributions-week-18 { left: 350px; }
+.contributions-week-19 { left: 365px; }
+.contributions-week-20 { left: 380px; }
+.contributions-week-21 { left: 395px; }
+.contributions-week-22 { left: 410px; }
+.contributions-week-23 { left: 425px; }
+.contributions-week-24 { left: 440px; }
+.contributions-week-25 { left: 455px; }
+.contributions-week-26 { left: 470px; }
+.contributions-week-27 { left: 485px; }
+.contributions-week-28 { left: 500px; }
+.contributions-week-29 { left: 515px; }
+.contributions-week-30 { left: 530px; }
+.contributions-week-31 { left: 545px; }
+.contributions-week-32 { left: 560px; }
+.contributions-week-33 { left: 575px; }
+.contributions-week-34 { left: 590px; }
+.contributions-week-35 { left: 605px; }
+.contributions-week-36 { left: 620px; }
+.contributions-week-37 { left: 635px; }
+.contributions-week-38 { left: 650px; }
+.contributions-week-39 { left: 665px; }
+.contributions-week-40 { left: 680px; }
+.contributions-week-41 { left: 695px; }
+.contributions-week-42 { left: 710px; }
+.contributions-week-43 { left: 725px; }
+.contributions-week-44 { left: 740px; }
+.contributions-week-45 { left: 755px; }
+.contributions-week-46 { left: 770px; }
+.contributions-week-47 { left: 785px; }
+.contributions-week-48 { left: 800px; }
+.contributions-week-49 { left: 815px; }
+.contributions-week-50 { left: 830px; }
+.contributions-week-51 { left: 845px; }
+.contributions-week-52 { left: 860px; }
+.contributions-week-53 { left: 875px; }
+

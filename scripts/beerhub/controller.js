@@ -263,6 +263,14 @@ controller('BeerCtrl', function ($scope, $http, $routeParams, $filter) {
     return style;
   };
 
+  $scope.getContributionDayClass = function(day){
+    return 'contributions-day-' + day;
+  };
+
+  $scope.getContributionWeekClass = function(week){
+    return 'contributions-week-' + Math.floor(week);
+  };
+
   $scope.getContributionDate = function(index, lastYearArr){
     var diffdays = lastYearArr.length - index - 1;
     var now = new Date();
