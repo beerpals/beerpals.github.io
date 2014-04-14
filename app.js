@@ -5,8 +5,8 @@ angular.module('BeerPallsApp', ['ngRoute', 'ui.bootstrap'])
   $locationProvider.hashPrefix('!');
   $routeProvider
     .when('/', {
-      templateUrl: 'components/beerhub/template.html',
-      controller: 'BeerHubCtrl'
+      templateUrl: 'components/home/template.html',
+      controller: 'HomeCtrl'
     })
     .when('/:user', {
       templateUrl: 'components/beerhub/template.html',
