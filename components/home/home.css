@@ -1,0 +1,12 @@
+.author {
+  display: block;
+  width: 50%;
+  padding: 10px;
+  float: left;
+  text-align: center;
+}
+
+.author-avatar {
+  width: 100%;
+  max-width: 100px;
+}
