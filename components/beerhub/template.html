@@ -1,4 +1,4 @@
-<h1>{{user}}</h1>
+<h1 class="text-center">{{user}}</h1>
 
 <section class="chart">
   <h4 class="text-center">Your contributions</h4>
@@ -19,20 +19,20 @@
 
   <div class="last-year-info">
     <div class="last-year-strike">
-      <h4>
+      <h4 class="text-center">
         {{totalContributions}} total
       </h4>
-      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0" class="text-center">
         <small>
         {{getContributionDate(0, analytics.lastYearArr) | date}} - 
         {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
         </small>
       </p>
-      <p>Year of contributions</p>
+      <p class="text-center">Year of contributions</p>
     </div>
 
     <div class="last-year-strike">
-      <h4>
+      <h4 class="text-center">
         <ng-pluralize
           count="longestStreak.days"
           when="{
@@ -42,17 +42,17 @@
           }"
         ></ng-pluralize>
       </h4>
-      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0" class="text-center">
         <small>
         {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
         {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
         </small>
       </p>
-      <p>Longest streak</p>
+      <p class="text-center">Longest streak</p>
     </div>
 
     <div class="last-year-strike">
-      <h4>
+      <h4 class="text-center">
         <ng-pluralize
           count="currentStreak.days"
           when="{
@@ -62,13 +62,13 @@
           }"
         ></ng-pluralize>
       </h4>
-      <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+      <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0" class="text-center">
         <small>
         {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
         {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
         </small>
       </p>
-      <p>Current streak</p>
+      <p class="text-center">Current streak</p>
     </div>
   </div>
 
