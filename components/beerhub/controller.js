@@ -17,7 +17,6 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     return /^feat.+|^chore.+|^style.+|^fix.+|^test.+/.test(message);
   };
 
-  $scope.period = {};
   $scope.commits = [];
   var lastYearArr = initArray(366);
   var yearArr = initArray(12);
@@ -30,10 +29,7 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     'weekArr': weekArr,
     'dayArr': dayArr,
     'weekhoursArr': weekhoursArr,
-    'lastYearArr': lastYearArr,
-    'year': {},
-    'month': {},
-    'week': {}
+    'lastYearArr': lastYearArr
   };
 
   $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits', {})
@@ -60,44 +56,13 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
 
         var now = new Date();
         var oneYearAgo = new Date();
-        var oneMonthAgo = new Date();
-        var oneWeekAgo = new Date();
         oneYearAgo.setYear(now.getFullYear() - 1);
-        oneMonthAgo.setMonth(now.getMonth() - 1);
-        oneWeekAgo.setDate(now.getDate() - 7);
         oneYearAgo.setHours(0,0,0);
-        oneMonthAgo.setHours(0,0,0);
-        oneWeekAgo.setHours(0,0,0);
         $scope.firstDay = oneYearAgo.getDay();
 
         var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
-        if (index >= 0) {
-          $scope.analytics['lastYearArr'][index].push(c);
-          if ($scope.analytics['year'][c.message] > 0) {
-            $scope.analytics['year'][c.message]++;
-          }
-          else {
-            $scope.analytics['year'][c.message] = 1;
-          }
-        }
 
-        if (oneMonthAgo <= new Date(c.date)) {
-          if ($scope.analytics['month'][c.message] > 0) {
-            $scope.analytics['month'][c.message]++;
-          }
-          else {
-            $scope.analytics['month'][c.message] = 1;
-          }
-        }
-        if (oneWeekAgo <= new Date(c.date)) {
-          if ($scope.analytics['week'][c.message] > 0) {
-            $scope.analytics['week'][c.message]++
-          }
-          else {
-            $scope.analytics['week'][c.message] = 1;
-          }
-
-        }
+        $scope.analytics['lastYearArr'][index].push(c);
         $scope.commits.push(c);
       }
     });
@@ -109,9 +74,6 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     $scope.maxWeekHours = getMaxDouble($scope.analytics.weekhoursArr);
 
     getStreaks($scope.analytics.lastYearArr);
-
-    $scope.period.name = 'week';
-    $scope.contributionBeers = getDayBeerArray($scope.analytics[$scope.period.name]);
     
   });
 
@@ -337,51 +299,11 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     return html;
   };
 
-  var getDayBeerCount = function(beers){
-    var dayBeers = {};
-    beers.forEach(function(beer){
-      if (dayBeers[beer.message] > 0) {
-        dayBeers[beer.message]++
-      }
-      else {
-        dayBeers[beer.message] = 1;
-      }
-    });
-    return dayBeers;
-  };
-
-  var getDayBeerArray = function(beerCount){
-    var beers = [];
-    if (beerCount) {
-      Object.keys(beerCount).forEach(function(beer){
-        var beer = {
-          'name': beer,
-          'count': beerCount[beer]
-        };
-        beers.push(beer);
-      });
-    }
-    return beers;
-  };
+  $scope.period = {};
 
   $scope.browseBeers = function(beers, date){
-    $scope.contributionBeers = getDayBeerArray(getDayBeerCount(beers));
+    $scope.period.beers = beers;
     $scope.period.date = date;
-    $scope.period.name = undefined;
-  };
-
-  $scope.getTotalBeers = function(beers){
-    var total = 0;
-    for (var i=0; beers && i<beers.length; i++){
-      total += beers[i].count;
-    }
-    return total;
-  };
-
-  $scope.changePeriod = function(period) {
-    $scope.period.date = undefined;
-    $scope.period.name = period;
-    $scope.contributionBeers = getDayBeerArray($scope.analytics[period]);
   };
 
 });

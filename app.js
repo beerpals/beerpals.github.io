@@ -18,4 +18,9 @@ angular.module('BeerPallsApp', ['ngRoute', 'ui.bootstrap'])
 })
 .run(function($rootScope, $location){
 
+})
+.filter('reverse', function() {
+  return function(items) {
+    return items ? items.slice().reverse() : items;
+  };
 });

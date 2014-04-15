@@ -72,34 +72,22 @@
     </div>
   </div>
 
-    <div class="contribution-activity">
-      <h2>
-        Contribution activity:
-        <small>(
-          <ng-pluralize
-            count="getTotalBeers(contributionBeers)"
-            when="{
-              '0': 'No beers',
-              '1': '{{getTotalBeers(contributionBeers)}} beer',
-              'other': '{{getTotalBeers(contributionBeers)}} beers'
-            }"
-          ></ng-pluralize>
-          )
-        </small>
-      </h2>
-
-      <div class="btn-group">
-        <button class="btn btn-success" ng-if="period.date" >Period: <strong>{{period.date | date}}</strong></button>
-        <button class="btn" ng-class="(period.name=='week') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('week')">Last Week</button>
-        <button class="btn" ng-class="(period.name=='month') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('month')">Last Month</button>
-        <button class="btn" ng-class="(period.name=='year') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('year')">Last Year</button>
-      </div>
-
-      <div class="contribution-activity-beers">
-        <p ng-repeat="beer in contributionBeers | orderBy:['-count','name']">
-          <strong>Drunk <span>{{beer.count}}</span> <span>{{beer.name}}</span></strong>
-        </p>
-      </div>
+    <div ng-show="period.date" class="contribution-activity">
+      <h4>Period: {{period.date | date}}</h4>
+      <p>
+        <ng-pluralize
+          count="period.beers.length"
+          when="{
+            '0': '{{period.beers.length}} beers',
+            '1': '{{period.beers.length}} beer',
+            'other': '{{period.beers.length}} beers'
+          }"
+        ></ng-pluralize>
+      </p>
+      <p ng-repeat="beer in period.beers | reverse">
+        {{beer.message}}
+      </p>
+      <button class="btn btn-link" ng-click="browseBeers()">clear</button>
     </div>
 
 </section>
