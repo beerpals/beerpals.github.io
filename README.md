@@ -34,3 +34,12 @@
   - fix:
   - test:
   - Merge 
+
+## Authors
+
+Jan Antala | Richard Samela
+--- | ---
+<p align="center"><a href="http://beerpals.github.io/#!/janantala"><img src="https://avatars.githubusercontent.com/u/840789?" alt="Jan Antala" width="100px" /></a></p> | <p align="center"><a href="http://beerpals.github.io/#!/feromakovi"><img src="https://avatars.githubusercontent.com/u/805629?" alt="Richard Samela" width="100px" /></a></p>
+http://beerpals.github.io/#!/janantala | http://beerpals.github.io/#!/feromakovi
+http://www.janantala.com/ | https://github.com/feromakovi
+
