@@ -33,6 +33,7 @@
   - style:
   - fix:
   - test:
+  - docs:
   - Merge 
 
 ## Authors
