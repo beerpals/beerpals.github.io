@@ -1,5 +1,7 @@
 # Beer Pals
 
+<img src="https://avatars0.githubusercontent.com/u/7156899" width="200px"/>
+
 ## Getting started
 
 1. Fork and clone [beerhub repository](https://github.com/beerpals/beerhub)
