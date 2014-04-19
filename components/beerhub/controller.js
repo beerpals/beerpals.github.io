@@ -14,7 +14,7 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
   };
 
   var filter = function(message){
-    return /^feat.*:.+|^chore.*:.+|^style.*:.+|^fix.*:.+|^test.*:.+|^merge.+/i.test(message);
+    return /^feat.*:.+|^chore.*:.+|^style.*:.+|^fix.*:.+|^test.*:.+|^docs.*:.+|^merge.+/i.test(message);
   };
 
   $scope.period = {};
