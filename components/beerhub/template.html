@@ -22,10 +22,13 @@
       <h4 class="text-center">
         {{totalContributions}} total
       </h4>
-      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0" class="text-center">
-        <small>
+      <p class="text-center">
+        <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
         {{getContributionDate(0, analytics.lastYearArr) | date}} - 
         {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
+        </small>
+        <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+          Rock - Hard Place
         </small>
       </p>
       <p class="text-center">Year of contributions</p>
@@ -42,10 +45,13 @@
           }"
         ></ng-pluralize>
       </h4>
-      <p ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0" class="text-center">
-        <small>
+      <p class="text-center">
+        <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
         {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
         {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
+        </small>
+        <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+          Rock - Hard Place
         </small>
       </p>
       <p class="text-center">Longest streak</p>
@@ -62,10 +68,13 @@
           }"
         ></ng-pluralize>
       </h4>
-      <p ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0" class="text-center">
-        <small>
+      <p class="text-center">
+        <small ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
         {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
         {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
+        </small>
+        <small ng-hide="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+          Rock - Hard Place
         </small>
       </p>
       <p class="text-center">Current streak</p>
