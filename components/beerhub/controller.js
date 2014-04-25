@@ -116,6 +116,16 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
   });
 
   $scope.totalContributions = 0;
+  $scope.longestStreak = {
+    'startIndex': undefined,
+    'endIndex': undefined,
+    'days': 0
+  };
+  $scope.currentStreak = {
+    'startIndex': undefined,
+    'endIndex': undefined,
+    'days': 0
+  };
 
   var getStreaks = function(lastYearArr){
     var total = 0;
