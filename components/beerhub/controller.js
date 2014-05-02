@@ -36,7 +36,21 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     'week': {}
   };
 
-  $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits', {})
+  var now = new Date();
+  var oneYearAgo = new Date();
+  var oneMonthAgo = new Date();
+  var oneWeekAgo = new Date();
+  oneYearAgo.setYear(now.getFullYear() - 1);
+  oneMonthAgo.setMonth(now.getMonth() - 1);
+  oneWeekAgo.setDate(now.getDate() - 7);
+  oneYearAgo.setHours(0,0,0);
+  oneMonthAgo.setHours(0,0,0);
+  oneWeekAgo.setHours(0,0,0);
+  $scope.firstDay = oneYearAgo.getDay();
+
+  var PAGE = 1;
+
+  $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits?page=' + PAGE + '&per_page=100&author=' + $scope.user + '&since=' + oneYearAgo.toISOString(), {})
   .success(function(commits){
     _.pluck(commits, 'commit').forEach(function(commit){
       if (!filter(commit.message)){
@@ -57,18 +71,6 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
         $scope.analytics['weekArr'][day].push(c);
         $scope.analytics['dayArr'][hour].push(c);
         $scope.analytics['weekhoursArr'][day][hour].push(c);
-
-        var now = new Date();
-        var oneYearAgo = new Date();
-        var oneMonthAgo = new Date();
-        var oneWeekAgo = new Date();
-        oneYearAgo.setYear(now.getFullYear() - 1);
-        oneMonthAgo.setMonth(now.getMonth() - 1);
-        oneWeekAgo.setDate(now.getDate() - 7);
-        oneYearAgo.setHours(0,0,0);
-        oneMonthAgo.setHours(0,0,0);
-        oneWeekAgo.setHours(0,0,0);
-        $scope.firstDay = oneYearAgo.getDay();
 
         var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
         if (index >= 0) {
