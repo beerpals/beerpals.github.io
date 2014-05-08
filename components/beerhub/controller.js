@@ -73,34 +73,37 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
         $scope.analytics['weekhoursArr'][day][hour].push(c);
 
         var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
-        if (index >= 0) {
+        if (index >= 0 && index < $scope.analytics['lastYearArr'].length) {
+          
           $scope.analytics['lastYearArr'][index].push(c);
+          
           if ($scope.analytics['year'][c.message] > 0) {
             $scope.analytics['year'][c.message]++;
           }
           else {
             $scope.analytics['year'][c.message] = 1;
           }
-        }
 
-        if (oneMonthAgo <= new Date(c.date)) {
-          if ($scope.analytics['month'][c.message] > 0) {
-            $scope.analytics['month'][c.message]++;
+          if (oneMonthAgo <= new Date(c.date)) {
+            if ($scope.analytics['month'][c.message] > 0) {
+              $scope.analytics['month'][c.message]++;
+            }
+            else {
+              $scope.analytics['month'][c.message] = 1;
+            }
           }
-          else {
-            $scope.analytics['month'][c.message] = 1;
+          
+          if (oneWeekAgo <= new Date(c.date)) {
+            if ($scope.analytics['week'][c.message] > 0) {
+              $scope.analytics['week'][c.message]++
+            }
+            else {
+              $scope.analytics['week'][c.message] = 1;
+            }
           }
+          
+          $scope.commits.push(c);
         }
-        if (oneWeekAgo <= new Date(c.date)) {
-          if ($scope.analytics['week'][c.message] > 0) {
-            $scope.analytics['week'][c.message]++
-          }
-          else {
-            $scope.analytics['week'][c.message] = 1;
-          }
-
-        }
-        $scope.commits.push(c);
       }
     });
 
