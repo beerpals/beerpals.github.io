@@ -157,6 +157,7 @@
       ng-repeat="day in analytics.weekArr"
       ng-class="getContributionClass(day.length, maxWeek)"
       tooltip-html-unsafe="{{getTooltip(day.length)}}"
+      ng-click="browseBeers(day, getContributionDay($index))"
     >
     </div>
   </div>

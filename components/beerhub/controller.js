@@ -339,6 +339,13 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     return d.toString().split(' ')[1];
   };
 
+  $scope.getContributionDay = function(day){
+    var d = new Date();
+    var now = d.getDay();
+    d.setDate(d.getDate() + ((day + 7 - now) % 7));
+    return d.toString().split(' ')[0];
+  };
+
   $scope.getTooltip = function(contributions, contributionDate){
     var html = '';
     if (contributions === 0) {
