@@ -132,6 +132,7 @@
       ng-repeat="month in analytics.yearArr"
       ng-class="getContributionClass(month.length, maxYear)"
       tooltip-html-unsafe="{{getTooltip(month.length)}}"
+      ng-click="browseBeers(month, getContributionMonth($index))"
     >
     </div>
   </div>

@@ -333,6 +333,12 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     return contributionDate;
   };
 
+  $scope.getContributionMonth = function(month){
+    var d = new Date();
+    d.setMonth(month);
+    return d.toString().split(' ')[1];
+  };
+
   $scope.getTooltip = function(contributions, contributionDate){
     var html = '';
     if (contributions === 0) {
