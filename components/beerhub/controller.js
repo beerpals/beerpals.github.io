@@ -349,7 +349,15 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
   $scope.getContributionHour = function(hour){
     var d = new Date();
     d.setHours(hour);
-    return d.toString().split(' ')[4].split(':')[0] + 'ish clock';
+    return d.toString().split(' ')[4].split(':')[0] + 'ish hour';
+  };
+
+  $scope.getContributionSchedule = function(day, hour){
+    var d = new Date();
+    var now = d.getDay();
+    d.setDate(d.getDate() + ((day + 7 - now) % 7));
+    d.setHours(hour);
+    return d.toString().split(' ')[0] + ' ' + d.toString().split(' ')[4].split(':')[0] + 'ish hour';
   };
 
   $scope.getTooltip = function(contributions, contributionDate){

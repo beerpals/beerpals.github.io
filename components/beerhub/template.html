@@ -210,6 +210,7 @@
       ng-repeat="hour in day"
       ng-class="getContributionClass(hour.length, maxWeekHours)"
       tooltip-html-unsafe="{{getTooltip(hour.length)}}"
+      ng-click="browseBeers(hour, getContributionSchedule($parent.$parent.$index, $index))"
     >
     </div>
   </div>
