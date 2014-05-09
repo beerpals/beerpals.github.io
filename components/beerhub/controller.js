@@ -346,6 +346,12 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
     return d.toString().split(' ')[0];
   };
 
+  $scope.getContributionHour = function(hour){
+    var d = new Date();
+    d.setHours(hour);
+    return d.toString().split(' ')[4].split(':')[0] + 'ish clock';
+  };
+
   $scope.getTooltip = function(contributions, contributionDate){
     var html = '';
     if (contributions === 0) {

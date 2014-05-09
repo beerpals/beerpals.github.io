@@ -183,6 +183,7 @@
       ng-repeat="hour in analytics.dayArr"
       ng-class="getContributionClass(hour.length, maxDay)"
       tooltip-html-unsafe="{{getTooltip(hour.length)}}"
+      ng-click="browseBeers(hour, getContributionHour($index))"
     >
     </div>
   </div>
