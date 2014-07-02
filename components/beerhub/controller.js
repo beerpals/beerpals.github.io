@@ -48,77 +48,84 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
   oneWeekAgo.setHours(0,0,0);
   $scope.firstDay = oneYearAgo.getDay();
 
-  var PAGE = 1;
+  var LIMIT = 100;
 
-  $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits?page=' + PAGE + '&per_page=100&author=' + $scope.user + '&since=' + oneYearAgo.toISOString(), {})
-  .success(function(commits){
-    _.pluck(commits, 'commit').forEach(function(commit){
-      if (!filter(commit.message)){
-        var date = new Date(commit.author.date);
+  var getBeers = function(page, limit) {
+    $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits?page=' + page + '&per_page=' + limit + '&author=' + $scope.user + '&since=' + oneYearAgo.toISOString(), {})
+    .success(function(commits){
+      _.pluck(commits, 'commit').forEach(function(commit){
+        if (!filter(commit.message)){
+          var date = new Date(commit.author.date);
 
-        var c = {
-          'date': commit.author.date,
-          'message': commit.message,
-          'author': commit.author.name,
-          'email': commit.author.email
-        };
+          var c = {
+            'date': commit.author.date,
+            'message': commit.message,
+            'author': commit.author.name,
+            'email': commit.author.email
+          };
 
-        var hour = date.getHours();
-        var day = date.getDay();
-        var month = date.getMonth();
+          var hour = date.getHours();
+          var day = date.getDay();
+          var month = date.getMonth();
 
-        $scope.analytics['yearArr'][month].push(c);
-        $scope.analytics['weekArr'][day].push(c);
-        $scope.analytics['dayArr'][hour].push(c);
-        $scope.analytics['weekhoursArr'][day][hour].push(c);
+          $scope.analytics['yearArr'][month].push(c);
+          $scope.analytics['weekArr'][day].push(c);
+          $scope.analytics['dayArr'][hour].push(c);
+          $scope.analytics['weekhoursArr'][day][hour].push(c);
 
-        var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
-        if (index >= 0 && index < $scope.analytics['lastYearArr'].length) {
-          
-          $scope.analytics['lastYearArr'][index].push(c);
-          
-          if ($scope.analytics['year'][c.message] > 0) {
-            $scope.analytics['year'][c.message]++;
-          }
-          else {
-            $scope.analytics['year'][c.message] = 1;
-          }
-
-          if (oneMonthAgo <= new Date(c.date)) {
-            if ($scope.analytics['month'][c.message] > 0) {
-              $scope.analytics['month'][c.message]++;
+          var index = Math.floor((date - oneYearAgo) / (24 * 60 * 60 * 1000));
+          if (index >= 0 && index < $scope.analytics['lastYearArr'].length) {
+            
+            $scope.analytics['lastYearArr'][index].push(c);
+            
+            if ($scope.analytics['year'][c.message] > 0) {
+              $scope.analytics['year'][c.message]++;
             }
             else {
-              $scope.analytics['month'][c.message] = 1;
+              $scope.analytics['year'][c.message] = 1;
             }
+
+            if (oneMonthAgo <= new Date(c.date)) {
+              if ($scope.analytics['month'][c.message] > 0) {
+                $scope.analytics['month'][c.message]++;
+              }
+              else {
+                $scope.analytics['month'][c.message] = 1;
+              }
+            }
+            
+            if (oneWeekAgo <= new Date(c.date)) {
+              if ($scope.analytics['week'][c.message] > 0) {
+                $scope.analytics['week'][c.message]++;
+              }
+              else {
+                $scope.analytics['week'][c.message] = 1;
+              }
+            }
+            
+            $scope.commits.push(c);
           }
-          
-          if (oneWeekAgo <= new Date(c.date)) {
-            if ($scope.analytics['week'][c.message] > 0) {
-              $scope.analytics['week'][c.message]++
-            }
-            else {
-              $scope.analytics['week'][c.message] = 1;
-            }
-          }
-          
-          $scope.commits.push(c);
         }
+      });
+
+      $scope.maxLastYear = getMax($scope.analytics.lastYearArr);
+      $scope.maxYear = getMax($scope.analytics.yearArr);
+      $scope.maxWeek = getMax($scope.analytics.weekArr);
+      $scope.maxDay = getMax($scope.analytics.dayArr);
+      $scope.maxWeekHours = getMaxDouble($scope.analytics.weekhoursArr);
+
+      getStreaks($scope.analytics.lastYearArr);
+
+      $scope.period.name = 'week';
+      $scope.contributionBeers = getDayBeerArray($scope.analytics[$scope.period.name]);
+
+      if (commits.length === limit) {
+        getBeers(page + 1, limit);
       }
     });
+  };
 
-    $scope.maxLastYear = getMax($scope.analytics.lastYearArr);
-    $scope.maxYear = getMax($scope.analytics.yearArr);
-    $scope.maxWeek = getMax($scope.analytics.weekArr);
-    $scope.maxDay = getMax($scope.analytics.dayArr);
-    $scope.maxWeekHours = getMaxDouble($scope.analytics.weekhoursArr);
-
-    getStreaks($scope.analytics.lastYearArr);
-
-    $scope.period.name = 'week';
-    $scope.contributionBeers = getDayBeerArray($scope.analytics[$scope.period.name]);
-    
-  });
+  getBeers(1, LIMIT);
 
   $scope.totalContributions = 0;
   $scope.longestStreak = {
