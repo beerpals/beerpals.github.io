@@ -88,36 +88,6 @@
       <p class="text-center">Current streak</p>
     </div>
   </div>
-
-    <div class="contribution-activity">
-      <h2>
-        Contribution activity:
-        <small>(
-          <ng-pluralize
-            count="getTotalBeers(contributionBeers)"
-            when="{
-              '0': 'No beers',
-              '1': '{{getTotalBeers(contributionBeers)}} beer',
-              'other': '{{getTotalBeers(contributionBeers)}} beers'
-            }"
-          ></ng-pluralize>
-          )
-        </small>
-      </h2>
-
-      <div class="btn-group">
-        <button class="btn btn-success" ng-if="period.date" >Period: <strong>{{period.date | date}}</strong></button>
-        <button class="btn" ng-class="(period.name=='week') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('week')">Last Week</button>
-        <button class="btn" ng-class="(period.name=='month') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('month')">Last Month</button>
-        <button class="btn" ng-class="(period.name=='year') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('year')">Last Year</button>
-      </div>
-
-      <div class="contribution-activity-beers">
-        <p ng-repeat="beer in contributionBeers | orderBy:['-count','name']">
-          <strong>Drank <span>{{beer.count}}</span> <span>{{beer.name}}</span></strong>
-        </p>
-      </div>
-    </div>
 </section>
 
  
@@ -219,6 +189,39 @@
       tooltip-html-unsafe="{{getTooltip(hour.length)}}"
       ng-click="browseBeers(hour, getContributionSchedule($parent.$parent.$index, $index))"
     >
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="contribution-activity">
+    <h3>
+      Contribution activity:
+      <small>(
+        <ng-pluralize
+          count="getTotalBeers(contributionBeers)"
+          when="{
+            '0': 'No beers',
+            '1': '{{getTotalBeers(contributionBeers)}} beer',
+            'other': '{{getTotalBeers(contributionBeers)}} beers'
+          }"
+        ></ng-pluralize>
+        )
+      </small>
+    </h3>
+
+    <div class="btn-group">
+      <button class="btn btn-success" ng-if="period.date" >Period: <strong>{{period.date | date}}</strong></button>
+      <button class="btn" ng-class="(period.name=='week') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('week')">Last Week</button>
+      <button class="btn" ng-class="(period.name=='month') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('month')">Last Month</button>
+      <button class="btn" ng-class="(period.name=='year') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('year')">Last Year</button>
+    </div>
+
+    <div class="contribution-activity-beers">
+      <p ng-repeat="beer in contributionBeers | orderBy:['-count','name']">
+        <strong>Drank <span>{{beer.count}}</span> <span>{{beer.name}}</span></strong>
+      </p>
     </div>
   </div>
 </section>
