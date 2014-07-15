@@ -1,5 +1,5 @@
 .chart {
-  margin-bottom: 25px;
+  margin: 25px auto;
 }
 
 .chart-last-year {  
@@ -7,6 +7,10 @@
   position: relative;
   width: 960px;
   height: 105px;
+}
+
+.strike-number {
+  margin: 10px auto;
 }
 
 .last-year-info {  

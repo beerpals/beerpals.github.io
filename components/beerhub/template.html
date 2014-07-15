@@ -1,217 +1,233 @@
-<h1 class="text-center">{{user}}</h1>
+<h1>{{user}}</h1>
+<h4>Your contributions</h4>
 
-<section class="chart">
-  <h4 class="text-center">Your contributions</h4>
+<div class="btn-group">
+  <button class="btn" ng-class="(chartName=='calendar') ? 'btn-success' : 'btn-default'" ng-click="changeChart('calendar')">Calendar</button>
+  <button class="btn" ng-class="(chartName=='month') ? 'btn-success' : 'btn-default'" ng-click="changeChart('month')">By Hour</button>
+  <button class="btn" ng-class="(chartName=='week') ? 'btn-success' : 'btn-default'" ng-click="changeChart('week')">By Day</button>
+  <button class="btn" ng-class="(chartName=='year') ? 'btn-success' : 'btn-default'" ng-click="changeChart('year')">By Month</button>
+  <button class="btn" ng-class="(chartName=='schedule') ? 'btn-success' : 'btn-default'" ng-click="changeChart('schedule')">Schedule</button>
+</div>
 
-  <div class="chart-last-year">
-    <div class="contributions contribution-last-year"
-      ng-repeat="day in analytics.lastYearArr"
-      ng-class="[
-        getContributionClass(day.length, maxLastYear),
-        getContributionDayClass((firstDay + $index) % 7),
-        getContributionWeekClass((firstDay + $index) / 7)
-      ]"
-      tooltip-html-unsafe="{{getTooltip(day.length, getContributionDate($index, analytics.lastYearArr))}}"
-      ng-click="browseBeers(day, getContributionDate($index, analytics.lastYearArr))"
-    >
-    </div>
-  </div>
+<section class="chart-view">
+  
+  <!-- Calendar -->
 
-  <div class="last-year-info">
-    <div class="last-year-strike">
-      <h4 class="text-center">
-        {{totalContributions}} total
-      </h4>
-      <p class="text-center">
-        <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-        {{getContributionDate(0, analytics.lastYearArr) | date}} - 
-        {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
-        </small>
-        <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-          Rock - Hard Place
-        </small>
-      </p>
-      <p class="text-center">Year of contributions</p>
+  <section class="chart" ng-show="chartName=='calendar'">
+    <h4 class="text-center">Calendar</h4>
+    <div class="chart-last-year">
+      <div class="contributions contribution-last-year"
+        ng-repeat="day in analytics.lastYearArr"
+        ng-class="[
+          getContributionClass(day.length, maxLastYear),
+          getContributionDayClass((firstDay + $index) % 7),
+          getContributionWeekClass((firstDay + $index) / 7)
+        ]"
+        tooltip-html-unsafe="{{getTooltip(day.length, getContributionDate($index, analytics.lastYearArr))}}"
+        ng-click="browseBeers(day, getContributionDate($index, analytics.lastYearArr))"
+      >
+      </div>
     </div>
 
-    <div class="last-year-strike">
-      <h4 class="text-center">
-        <ng-pluralize
-          count="longestStreak.days"
-          when="{
-            '0': '{{longestStreak.days}} days',
-            '1': '{{longestStreak.days}} day',
-            'other': '{{longestStreak.days}} days'
-          }"
-        ></ng-pluralize>
-      </h4>
-      <p class="text-center">
-        <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-        {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
-        {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
-        </small>
-        <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
-          Rock - Hard Place
-        </small>
-      </p>
-      <p class="text-center">Longest streak</p>
-    </div>
-
-    <div class="last-year-strike">
-      <h4 class="text-center">
-        <ng-pluralize
-          count="currentStreak.days"
-          when="{
-            '0': '{{currentStreak.days}} days',
-            '1': '{{currentStreak.days}} day',
-            'other': '{{currentStreak.days}} days'
-          }"
-        ></ng-pluralize>
-      </h4>
-      <p class="text-center">
-        <small ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
-        {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
-        {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
-        </small>
-        <small ng-hide="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
-          Rock - Hard Place
-        </small>
-      </p>
-      <p class="text-center">Current streak</p>
-    </div>
-  </div>
-
-    <div class="contribution-activity">
-      <h2>
-        Contribution activity:
-        <small>(
-          <ng-pluralize
-            count="getTotalBeers(contributionBeers)"
-            when="{
-              '0': 'No beers',
-              '1': '{{getTotalBeers(contributionBeers)}} beer',
-              'other': '{{getTotalBeers(contributionBeers)}} beers'
-            }"
-          ></ng-pluralize>
-          )
-        </small>
-      </h2>
-
-      <div class="btn-group">
-        <button class="btn btn-success" ng-if="period.date" >Period: <strong>{{period.date | date}}</strong></button>
-        <button class="btn" ng-class="(period.name=='week') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('week')">Last Week</button>
-        <button class="btn" ng-class="(period.name=='month') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('month')">Last Month</button>
-        <button class="btn" ng-class="(period.name=='year') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('year')">Last Year</button>
+    <div class="last-year-info">
+      <div class="last-year-strike">
+        <p class="text-center">Year of contributions</p>
+        <h3 class="text-center strike-number">
+          {{totalContributions}} total
+        </h3>
+        <p class="text-center">
+          <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+          {{getContributionDate(0, analytics.lastYearArr) | date}} - 
+          {{getContributionDate(analytics.lastYearArr.length - 1, analytics.lastYearArr) | date}}
+          </small>
+          <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+            Rock - Hard Place
+          </small>
+        </p>
       </div>
 
-      <div class="contribution-activity-beers">
-        <p ng-repeat="beer in contributionBeers | orderBy:['-count','name']">
-          <strong>Drank <span>{{beer.count}}</span> <span>{{beer.name}}</span></strong>
+      <div class="last-year-strike">
+        <p class="text-center">Longest streak</p>
+        <h3 class="text-center strike-number">
+          <ng-pluralize
+            count="longestStreak.days"
+            when="{
+              '0': '{{longestStreak.days}} days',
+              '1': '{{longestStreak.days}} day',
+              'other': '{{longestStreak.days}} days'
+            }"
+          ></ng-pluralize>
+        </h3>
+        <p class="text-center">
+          <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+          {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
+          {{getContributionDate(longestStreak.endIndex, analytics.lastYearArr) | date}}
+          </small>
+          <small ng-hide="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
+            Rock - Hard Place
+          </small>
+        </p>
+      </div>
+
+      <div class="last-year-strike">
+        <p class="text-center">Current streak</p>
+        <h3 class="text-center strike-number">
+          <ng-pluralize
+            count="currentStreak.days"
+            when="{
+              '0': '{{currentStreak.days}} days',
+              '1': '{{currentStreak.days}} day',
+              'other': '{{currentStreak.days}} days'
+            }"
+          ></ng-pluralize>
+        </h3>
+        <p class="text-center">
+          <small ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+          {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
+          {{getContributionDate(currentStreak.endIndex, analytics.lastYearArr) | date}}
+          </small>
+          <small ng-hide="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
+            Rock - Hard Place
+          </small>
         </p>
       </div>
     </div>
+  </section>
 
+  <!-- By Hour -->
+
+  <section class="lastyear chart" ng-show="chartName=='year'">
+    <h4 class="text-center">Year</h4>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Month
+      </div>
+      <div class="flex-row text" ng-repeat="month in months">
+        {{strings.SHORTMONTH[$index]}}
+      </div>
+    </div>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Contributions
+      </div>
+      <div class="flex-row contributions"
+        ng-repeat="month in analytics.yearArr"
+        ng-class="getContributionClass(month.length, maxYear)"
+        tooltip-html-unsafe="{{getTooltip(month.length)}}"
+        ng-click="browseBeers(month, getContributionMonth($index))"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- By Day -->
+
+  <section class="week chart" ng-show="chartName=='week'">
+  <h4 class="text-center">Week</h4>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Day
+      </div>
+      <div class="flex-row text" ng-repeat="day in days">
+        {{strings.SHORTDAY[$index]}}
+      </div>
+    </div>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Contributions
+      </div>
+      <div class="flex-row contributions"
+        ng-repeat="day in analytics.weekArr"
+        ng-class="getContributionClass(day.length, maxWeek)"
+        tooltip-html-unsafe="{{getTooltip(day.length)}}"
+        ng-click="browseBeers(day, getContributionDay($index))"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- By Month -->
+
+  <section class="day chart" ng-show="chartName=='month'">
+    <h4 class="text-center">Day</h4>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Hour
+      </div>
+      <div class="flex-row text" ng-repeat="hour in hours">
+        {{hour}}
+      </div>
+    </div>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Contributions
+      </div>
+      <div class="flex-row contributions"
+        ng-repeat="hour in analytics.dayArr"
+        ng-class="getContributionClass(hour.length, maxDay)"
+        tooltip-html-unsafe="{{getTooltip(hour.length)}}"
+        ng-click="browseBeers(hour, getContributionHour($index))"
+      >
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+
+  <section class="weekhours chart" ng-show="chartName=='schedule'">
+    <h4 class="text-center">Schedule</h4>
+    <div class="flex-container">
+      <div class="flex-row title text">
+        Day / Hour
+      </div>
+      <div class="flex-row text" ng-repeat="hour in dayHours">
+        {{hour}}
+      </div>
+    </div>
+
+    <div ng-repeat="day in analytics.weekhoursArr" class="flex-container">
+      <div class="flex-row title text">
+        {{strings.DAY[$index]}}
+      </div>
+      <div class="flex-row contributions"
+        ng-repeat="hour in day"
+        ng-class="getContributionClass(hour.length, maxWeekHours)"
+        tooltip-html-unsafe="{{getTooltip(hour.length)}}"
+        ng-click="browseBeers(hour, getContributionSchedule($parent.$parent.$index, $index))"
+      >
+      </div>
+    </div>
+  </section>
 </section>
 
- 
-<section class="lastyear chart">
-  <h4 class="text-center">Year</h4>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Month
-    </div>
-    <div class="flex-row text" ng-repeat="month in months">
-      {{strings.SHORTMONTH[$index]}}
-    </div>
-  </div>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Contributions
-    </div>
-    <div class="flex-row contributions"
-      ng-repeat="month in analytics.yearArr"
-      ng-class="getContributionClass(month.length, maxYear)"
-      tooltip-html-unsafe="{{getTooltip(month.length)}}"
-      ng-click="browseBeers(month, getContributionMonth($index))"
-    >
-    </div>
-  </div>
-</section>
+<section>
+  <div class="contribution-activity">
+    <h3>
+      Contribution activity:
+      <small>(
+        <ng-pluralize
+          count="getTotalBeers(contributionBeers)"
+          when="{
+            '0': 'No beers',
+            '1': '{{getTotalBeers(contributionBeers)}} beer',
+            'other': '{{getTotalBeers(contributionBeers)}} beers'
+          }"
+        ></ng-pluralize>
+        )
+      </small>
+    </h3>
 
+    <div class="btn-group">
+      <button class="btn btn-success" ng-if="period.date" >Period: <strong>{{period.date | date}}</strong></button>
+      <button class="btn" ng-class="(period.name=='week') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('week')">Last Week</button>
+      <button class="btn" ng-class="(period.name=='month') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('month')">Last Month</button>
+      <button class="btn" ng-class="(period.name=='year') ? 'btn-success' : 'btn-default'" ng-click="changePeriod('year')">Last Year</button>
+    </div>
 
-<section class="week chart">
-<h4 class="text-center">Week</h4>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Day
-    </div>
-    <div class="flex-row text" ng-repeat="day in days">
-      {{strings.SHORTDAY[$index]}}
-    </div>
-  </div>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Contributions
-    </div>
-    <div class="flex-row contributions"
-      ng-repeat="day in analytics.weekArr"
-      ng-class="getContributionClass(day.length, maxWeek)"
-      tooltip-html-unsafe="{{getTooltip(day.length)}}"
-      ng-click="browseBeers(day, getContributionDay($index))"
-    >
-    </div>
-  </div>
-</section>
-
-
-
-<section class="day chart">
-  <h4 class="text-center">Day</h4>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Hour
-    </div>
-    <div class="flex-row text" ng-repeat="hour in hours">
-      {{hour}}
-    </div>
-  </div>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Contributions
-    </div>
-    <div class="flex-row contributions"
-      ng-repeat="hour in analytics.dayArr"
-      ng-class="getContributionClass(hour.length, maxDay)"
-      tooltip-html-unsafe="{{getTooltip(hour.length)}}"
-      ng-click="browseBeers(hour, getContributionHour($index))"
-    >
-    </div>
-  </div>
-</section>
-
-
-
-<section class="weekhours chart">
-  <h4 class="text-center">Schedule</h4>
-  <div class="flex-container">
-    <div class="flex-row title text">
-      Day / Hour
-    </div>
-    <div class="flex-row text" ng-repeat="hour in dayHours">
-      {{hour}}
-    </div>
-  </div>
-
-  <div ng-repeat="day in analytics.weekhoursArr" class="flex-container">
-    <div class="flex-row title text">
-      {{strings.DAY[$index]}}
-    </div>
-    <div class="flex-row contributions"
-      ng-repeat="hour in day"
-      ng-class="getContributionClass(hour.length, maxWeekHours)"
-      tooltip-html-unsafe="{{getTooltip(hour.length)}}"
-      ng-click="browseBeers(hour, getContributionSchedule($parent.$parent.$index, $index))"
-    >
+    <div class="contribution-activity-beers">
+      <p ng-repeat="beer in contributionBeers | orderBy:['-count','name']">
+        <strong>Drank <span>{{beer.count}}</span> <span>{{beer.name}}</span></strong>
+      </p>
     </div>
   </div>
 </section>
