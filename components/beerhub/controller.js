@@ -4,6 +4,11 @@ angular.module('BeerPallsApp').
 controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
 
   $scope.user = $routeParams.user;
+  $scope.chartName = 'calendar';
+
+  $scope.changeChart = function(chartName) {
+    $scope.chartName = chartName;
+  };
 
   var initArray = function(arraySize){
     var array = [];

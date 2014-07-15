@@ -1,8 +1,16 @@
-<h1 class="text-center">{{user}}</h1>
+<h1>{{user}}</h1>
+<h4>Your contributions</h4>
 
-<section class="chart">
-  <h4 class="text-center">Your contributions</h4>
+<div class="btn-group">
+  <button class="btn" ng-class="(chartName=='calendar') ? 'btn-success' : 'btn-default'" ng-click="changeChart('calendar')">Calendar</button>
+  <button class="btn" ng-class="(chartName=='month') ? 'btn-success' : 'btn-default'" ng-click="changeChart('month')">By Hour</button>
+  <button class="btn" ng-class="(chartName=='week') ? 'btn-success' : 'btn-default'" ng-click="changeChart('week')">By Day</button>
+  <button class="btn" ng-class="(chartName=='year') ? 'btn-success' : 'btn-default'" ng-click="changeChart('year')">By Month</button>
+  <button class="btn" ng-class="(chartName=='schedule') ? 'btn-success' : 'btn-default'" ng-click="changeChart('schedule')">Schedule</button>
+</div>
 
+<section class="chart" ng-show="chartName=='calendar'">
+  <h4 class="text-center">Calendar</h4>
   <div class="chart-last-year">
     <div class="contributions contribution-last-year"
       ng-repeat="day in analytics.lastYearArr"
@@ -110,11 +118,10 @@
         </p>
       </div>
     </div>
-
 </section>
 
  
-<section class="lastyear chart">
+<section class="lastyear chart" ng-show="chartName=='year'">
   <h4 class="text-center">Year</h4>
   <div class="flex-container">
     <div class="flex-row title text">
@@ -139,7 +146,7 @@
 </section>
 
 
-<section class="week chart">
+<section class="week chart" ng-show="chartName=='week'">
 <h4 class="text-center">Week</h4>
   <div class="flex-container">
     <div class="flex-row title text">
@@ -165,7 +172,7 @@
 
 
 
-<section class="day chart">
+<section class="day chart" ng-show="chartName=='month'">
   <h4 class="text-center">Day</h4>
   <div class="flex-container">
     <div class="flex-row title text">
@@ -191,7 +198,7 @@
 
 
 
-<section class="weekhours chart">
+<section class="weekhours chart" ng-show="chartName=='schedule'">
   <h4 class="text-center">Schedule</h4>
   <div class="flex-container">
     <div class="flex-row title text">
