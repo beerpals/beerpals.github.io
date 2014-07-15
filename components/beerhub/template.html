@@ -31,9 +31,10 @@
 
     <div class="last-year-info">
       <div class="last-year-strike">
-        <h4 class="text-center">
+        <p class="text-center">Year of contributions</p>
+        <h3 class="text-center strike-number">
           {{totalContributions}} total
-        </h4>
+        </h3>
         <p class="text-center">
           <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
           {{getContributionDate(0, analytics.lastYearArr) | date}} - 
@@ -43,11 +44,11 @@
             Rock - Hard Place
           </small>
         </p>
-        <p class="text-center">Year of contributions</p>
       </div>
 
       <div class="last-year-strike">
-        <h4 class="text-center">
+        <p class="text-center">Longest streak</p>
+        <h3 class="text-center strike-number">
           <ng-pluralize
             count="longestStreak.days"
             when="{
@@ -56,7 +57,7 @@
               'other': '{{longestStreak.days}} days'
             }"
           ></ng-pluralize>
-        </h4>
+        </h3>
         <p class="text-center">
           <small ng-show="longestStreak.startIndex >= 0 && longestStreak.endIndex >=0">
           {{getContributionDate(longestStreak.startIndex, analytics.lastYearArr) | date}} - 
@@ -66,11 +67,11 @@
             Rock - Hard Place
           </small>
         </p>
-        <p class="text-center">Longest streak</p>
       </div>
 
       <div class="last-year-strike">
-        <h4 class="text-center">
+        <p class="text-center">Current streak</p>
+        <h3 class="text-center strike-number">
           <ng-pluralize
             count="currentStreak.days"
             when="{
@@ -79,7 +80,7 @@
               'other': '{{currentStreak.days}} days'
             }"
           ></ng-pluralize>
-        </h4>
+        </h3>
         <p class="text-center">
           <small ng-show="currentStreak.startIndex >= 0 && currentStreak.endIndex >=0">
           {{getContributionDate(currentStreak.startIndex, analytics.lastYearArr) | date}} - 
@@ -89,7 +90,6 @@
             Rock - Hard Place
           </small>
         </p>
-        <p class="text-center">Current streak</p>
       </div>
     </div>
   </section>
