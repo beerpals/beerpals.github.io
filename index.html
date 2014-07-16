@@ -39,6 +39,77 @@
       padding: 10px;
     }
 
+    .beerhub-nav {
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      float: left;
+      margin-right: 20px;
+      max-width: 70px;
+    }
+
+    .credits ul {
+      list-style: none;
+      text-decoration: none;
+      padding: 0;
+      width: 100px;
+      margin: 0 auto;
+      padding: 10px auto;
+    }
+
+    .credits li {
+      display: inline-block;
+      text-align: left;
+      width: 100px;
+    }
+
+    .credits a {
+      color: rgb(144, 115, 192);
+    }
+
+    .credits li img {
+      border-radius: 4px;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .love {
+      display: inline-block;
+      position: relative;
+      top: .2em;
+      font-size: 1.2em;
+      color: rgb(201, 70, 59);
+      -webkit-transform: scale(.9);
+      -moz-transform: scale(.9);
+      transform: scale(.9);
+      -webkit-animation: love .5s infinite linear alternate-reverse;
+      -moz-animation: love .5s infinite linear alternate-reverse;
+      animation: love .5s infinite linear alternate-reverse;
+    }
+
+    @-webkit-keyframes love {
+      to {
+        -webkit-transform: scale(1.4);
+        transform: scale(1.4);
+      }
+    }
+
+    @-moz-keyframes love {
+      to {
+        -moz-transform: scale(1.4);
+        transform: scale(1.4);
+      }
+    }
+
+    @keyframes love {
+      to {
+        -webkit-transform: scale(1.4);
+        -moz-transform: scale(1.4);
+        transform: scale(1.4);
+      }
+    }
+
     </style>
 </head>
 <body class="container" ng-app="BeerPallsApp">
@@ -46,6 +117,30 @@
 <div ng-view="" class="body">
 
 </div>
+
+<footer class="credits">
+  <p class="text-center">Join the <a href="/" title="Beer Pals">Beer Pals</a></p>
+  <p class="text-center">Made with <span class="love">♥</span> by these guys</p>
+  <ul>
+    <li>
+      <p>
+        <a href="/#!/janantala" title="Jan Antala">
+          <img src="https://avatars.githubusercontent.com/u/840789?size=40" alt="Jan Antala">
+          <span>Jan <br>Antala</span>
+        </a>
+      </p>
+    </li>
+    <li>
+      <p>
+        <a href="/#!/feromakovi" title="Richard Samela">
+          <img src="https://avatars.githubusercontent.com/u/805629?size=40" alt="Richard Samela">
+          <span>Richard <br>Samela</span>
+        </a>
+      </p>
+    </li>
+  </ul>
+  <p></p>
+</footer>
 
 <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
