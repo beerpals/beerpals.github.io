@@ -1,3 +1,13 @@
+.beerhub-nav {
+  margin-bottom: 20px;
+}
+
+.logo {
+  float: left;
+  margin-right: 20px;
+  max-width: 70px;
+}
+
 .chart {
   margin: 25px auto;
 }

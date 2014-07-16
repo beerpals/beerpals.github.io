@@ -1,5 +1,15 @@
-<h1>{{user}}</h1>
-<h4>Your contributions</h4>
+
+<nav class="beerhub-nav">
+  <a href="/">
+    <img src="https://avatars0.githubusercontent.com/u/7156899" class="logo" alt="Beer Pals">
+  </a>
+
+  <div>
+    <h1>{{user}}</h1>
+    <h4>Your contributions</h4>
+  </div>
+</nav>
+
 
 <div class="btn-group">
   <button class="btn" ng-class="(chartName=='calendar') ? 'btn-success' : 'btn-default'" ng-click="changeChart('calendar')">Calendar</button>
