@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="img/logo.png">
 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700,300italic,400italic,500,500italic,700italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="components/home/home.css">
   <link rel="stylesheet" href="components/beerhub/charts.css">
   <link rel="stylesheet" href="components/beerhub/contributions.css">
@@ -56,6 +55,14 @@
       float: left;
       margin-right: 20px;
       max-width: 70px;
+    }
+
+    .chart-view {
+      height: 280px;
+    }
+
+    .contribution-activity {
+      min-height: 300px;
     }
 
     .credits ul {
@@ -122,6 +129,16 @@
 
     </style>
 </head>
+
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
+<script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="components/home/controller.js"></script>
+<script type="text/javascript" src="components/beerhub/controller.js"></script>
+
 <body class="container" ng-app="BeerPallsApp">
 
 <div ng-view="" class="body">
@@ -152,14 +169,7 @@
   <p></p>
 </footer>
 
-<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-
-<script type="text/javascript" src="app.js"></script>
-<script type="text/javascript" src="components/home/controller.js"></script>
-<script type="text/javascript" src="components/beerhub/controller.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700,300italic,400italic,500,500italic,700italic' rel='stylesheet' type='text/css'>
 
 </body>
 </html>
