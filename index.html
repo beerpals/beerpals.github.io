@@ -39,11 +39,14 @@
       padding: 0 10px;
     }
 
+    .content {
+      min-height: 810px;
+    }
+
     .body {
       margin: 0 auto;
       width: 100%;
       max-width: 1000px;
-      min-height: 600px;
       padding: 10px;
     }
 
@@ -141,8 +144,10 @@
 
 <body class="container" ng-app="BeerPallsApp">
 
-<div ng-view="" class="body">
+<div class="content">
+  <section ng-view="" class="body">
 
+  </section>
 </div>
 
 <footer class="credits">
