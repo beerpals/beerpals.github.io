@@ -68,6 +68,12 @@
       min-height: 300px;
     }
 
+    .credits {
+      background: rgb(0,158,45);
+      padding-top: 20px;
+      color: rgb(255,255,255);
+    }
+
     .credits ul {
       list-style: none;
       text-decoration: none;
@@ -84,7 +90,7 @@
     }
 
     .credits a {
-      color: rgb(144, 115, 192);
+      color: rgb(151,215,169);
     }
 
     .credits li img {
@@ -99,7 +105,7 @@
       position: relative;
       top: .2em;
       font-size: 1.2em;
-      color: rgb(201, 70, 59);
+      color: rgb(151,215,69);
       -webkit-transform: scale(.9);
       -moz-transform: scale(.9);
       transform: scale(.9);
@@ -142,15 +148,20 @@
 <script type="text/javascript" src="components/home/controller.js"></script>
 <script type="text/javascript" src="components/beerhub/controller.js"></script>
 
-<body class="container" ng-app="BeerPallsApp">
+<body ng-app="BeerPallsApp">
 
-<div class="content">
+<div>
+  
+<div class="content" class="container">
   <section ng-view="" class="body">
 
   </section>
 </div>
 
+</div>
+
 <footer class="credits">
+  <div class="container">    
   <p class="text-center">Join the <a href="/" title="Beer Pals">Beer Pals</a></p>
   <p class="text-center">Made with <span class="love">♥</span> by these guys</p>
   <ul>
@@ -172,6 +183,7 @@
     </li>
   </ul>
   <p></p>
+  </div>
 </footer>
 
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700,300italic,400italic,500,500italic,700italic' rel='stylesheet' type='text/css'>
