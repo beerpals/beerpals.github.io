@@ -1,15 +1,17 @@
+<div class="container">
+  <nav class="beerhub-nav">
+    <a href="/">
+      <img src="https://avatars0.githubusercontent.com/u/7156899" class="logo" alt="Beer Pals">
+    </a>
 
-<nav class="beerhub-nav">
-  <a href="/">
-    <img src="https://avatars0.githubusercontent.com/u/7156899" class="logo" alt="Beer Pals">
-  </a>
+    <div>
+      <h1>{{user}} <span class="github-link">(<a ng-href="https://github.com/{{user}}" title="GitHub">GitHub</a>)</span></h1>
+      <h4>Your contributions</h4>
+    </div>
+  </nav>
+</div>
 
-  <div>
-    <h1>{{user}} <span class="github-link">(<a ng-href="https://github.com/{{user}}" title="GitHub">GitHub</a>)</span></h1>
-    <h4>Your contributions</h4>
-  </div>
-</nav>
-
+<div class="container">
 
 <div class="btn-group">
   <button class="btn" ng-class="(chartName=='calendar') ? 'btn-success' : 'btn-default'" ng-click="changeChart('calendar')">Calendar</button>
@@ -209,7 +211,9 @@
     </div>
   </section>
 </section>
+</div>
 
+<div class="container">
 <section>
   <div class="contribution-activity">
     <h3>
@@ -241,3 +245,4 @@
     </div>
   </div>
 </section>
+</div>
