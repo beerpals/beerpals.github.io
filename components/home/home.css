@@ -30,3 +30,17 @@
   width: 100%;
   max-width: 100px;
 }
+
+.faq-h3 {
+  font-size: 32px;
+}
+
+.faq-h4 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.faq-li {
+  font-size: 16px;
+  margin: 10px auto;
+}

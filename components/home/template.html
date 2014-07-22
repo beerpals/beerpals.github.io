@@ -27,34 +27,40 @@
 
 <div class="faq container">
   
-<h3>FAQ</h3>
+<h3 class="faq-h3">FAQ</h3>
 
-<h4>Do I really need to clone the beerhub repository?</h4>
+<h4 class="faq-h4">Do I really need to clone the beerhub repository?</h4>
 
 <ul>
-  <li>No, you can create your own repository and name it <code>beerhub</code>, but your drinking activity will be also recorded in the github timeline.</li>
+  <li class="faq-li">No, you can create your own repository and name it <code>beerhub</code>, but your drinking activity will be also recorded in the github timeline.</li>
 </ul>
 
-<h4>How to commit beer you have drunk a few hours ago?</h4>
+<h4 class="faq-h4">How to commit beer you have drunk a few hours ago?</h4>
 
 <ul>
-  <li>Change commit date: <code>git commit -m 'St. Bernardus Abt 12' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code></li>
+  <li class="faq-li">Change commit date: <br>
+    <code>git commit -m 'St. Bernardus Abt 12' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code>
+  </li>
 </ul>
 
-<h4>How to change the commit message of beer you drank and already committed?</h4>
+<h4 class="faq-h4">How to change the commit message of beer you drank and already committed?</h4>
 
 <ul>
-  <li>If it is just the last one, you can use <code>ammend</code> parameter: <code>git commit --amend -m 'St. Bernardus Tripel' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code></li>
+  <li class="faq-li">If it is just the last one, you can use <code>ammend</code> parameter: <br>
+    <code>git commit --amend -m 'St. Bernardus Tripel' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code>
+  </li>
 
-  <li>Otherwise you need repeat <code>git reset --hard HEAD^</code> to remove the last commit for all wrong commit messages and then add the new commits <code>git commit -m 'St. Bernardus Abt 12' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code></li>
+  <li class="faq-li">Otherwise you need repeat <code>git reset --hard HEAD^</code> to remove the last commit for all wrong commit messages and then add the new commits <code>git commit -m 'St. Bernardus Abt 12' --date 'Wed Apr 9 23:53 2014 +0200' --allow-empty</code></li>
 
-  <li>If you already pushed to github don't forget to <code>git push -f origin master</code>.</li>
+  <li class="faq-li">If you already pushed to github don't forget to <code>git push -f origin master</code>.</li>
 </ul>
 
-<h4>Do you show all commits in my timeline?</h4>
+<h4 class="faq-h4">Do you show all commits in my timeline?</h4>
 
 <ul>
-  <li>No, we use only master branch. We also filter commits and hide those which message starts with the following:
+  <li class="faq-li">No, we use only master branch and commits from registered github email address.</li> 
+
+  <li class="faq-li">We also filter commits and hide those which message starts with the following:
     <ul>
       <li>feat:</li>
       <li>chore:</li>
