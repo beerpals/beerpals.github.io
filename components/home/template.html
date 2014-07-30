@@ -6,14 +6,35 @@
 
     <div>
       <h1>Beer Palls</h1>
-      <h4>Records your drinking activity since 2014.</h4>
+      <h4>Records and visualizes your drinking activity since 2014.</h4>
     </div>
   </nav>
+</div>
+
+<div class="container">
+
+  <div class="btn-group">
+    <button class="btn" ng-class="(currentImg=='calendar') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'calendar'">Calendar</button>
+    <button class="btn" ng-class="(currentImg=='hour') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'hour'">By Hour</button>
+    <button class="btn" ng-class="(currentImg=='day') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'day'">By Day</button>
+    <button class="btn" ng-class="(currentImg=='month') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'month'">By Month</button>
+    <button class="btn" ng-class="(currentImg=='schedule') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'schedule'">Schedule</button>
+  </div>
+
+  <div ng-show="currentImg=='calendar'"><img src="img/calendar.png" class="promo-image" alt="calendar"/></div>
+  <div ng-show="currentImg=='hour'"><img src="img/hour.png" class="promo-image" alt="hour"/></div>
+  <div ng-show="currentImg=='day'"><img src="img/day.png" class="promo-image" alt="day"/></div>
+  <div ng-show="currentImg=='month'"><img src="img/month.png" class="promo-image" alt="month"/></div>
+  <div ng-show="currentImg=='schedule'"><img src="img/schedule.png" class="promo-image" alt="schedule"/></div>
+
+  <p class="text-center">And many more...</p>
+
 </div>
 
 <div class="starting">
 
 <div class="container">
+  <h2 class="starting-header">Create your own charts!</h2>
   <ol>
     <li>Fork and clone <a href="https://github.com/beerpals/beerhub">beerhub repository</a></li>
     <li>Commit your beer <br><code>git commit -m 'Mikkeller Geek Brunch Weasel' --allow-empty</code></li>
