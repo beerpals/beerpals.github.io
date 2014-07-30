@@ -5,6 +5,7 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
 
   $scope.user = $routeParams.user;
   $scope.chartName = 'calendar';
+  $scope.avatar = 'https://avatars0.githubusercontent.com/u/7156899';
 
   $scope.changeChart = function(chartName) {
     $scope.chartName = chartName;
@@ -58,6 +59,9 @@ controller('BeerHubCtrl', function ($scope, $http, $routeParams, $filter) {
   var getBeers = function(page, limit) {
     $http.get('https://api.github.com/repos/' + $scope.user + '/beerhub/commits?page=' + page + '&per_page=' + limit + '&author=' + $scope.user + '&since=' + oneYearAgo.toISOString(), {})
     .success(function(commits){
+      if (commits.length) {
+        $scope.avatar = commits[0].author.avatar_url || $scope.avatar;
+      }
       _.pluck(commits, 'commit').forEach(function(commit){
         if (!filter(commit.message)){
           var date = new Date(commit.author.date);
