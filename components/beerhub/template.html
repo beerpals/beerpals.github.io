@@ -227,6 +227,15 @@
             'other': '{{getTotalBeers(contributionBeers)}} beers'
           }"
         ></ng-pluralize>
+        &frasl;
+        <ng-pluralize
+          count="contributionBeers.length"
+          when="{
+            '0': 'No styles',
+            '1': '{{contributionBeers.length}} style',
+            'other': '{{contributionBeers.length}} styles'
+          }"
+        ></ng-pluralize>
         )
       </small>
     </h3>
