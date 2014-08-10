@@ -21,13 +21,15 @@
     <button class="btn" ng-class="(currentImg=='schedule') ? 'btn-success' : 'btn-default'" ng-click="currentImg = 'schedule'">Schedule</button>
   </div>
 
-  <div ng-show="currentImg=='calendar'"><img src="img/calendar.png" class="promo-image" alt="calendar"/></div>
-  <div ng-show="currentImg=='hour'"><img src="img/hour.png" class="promo-image" alt="hour"/></div>
-  <div ng-show="currentImg=='day'"><img src="img/day.png" class="promo-image" alt="day"/></div>
-  <div ng-show="currentImg=='month'"><img src="img/month.png" class="promo-image" alt="month"/></div>
-  <div ng-show="currentImg=='schedule'"><img src="img/schedule.png" class="promo-image" alt="schedule"/></div>
+  <div class="promo">
+    <div ng-show="currentImg=='calendar'"><img src="img/calendar.png" class="promo-image" alt="calendar"/></div>
+    <div ng-show="currentImg=='hour'"><img src="img/hour.png" class="promo-image" alt="hour"/></div>
+    <div ng-show="currentImg=='day'"><img src="img/day.png" class="promo-image" alt="day"/></div>
+    <div ng-show="currentImg=='month'"><img src="img/month.png" class="promo-image" alt="month"/></div>
+    <div ng-show="currentImg=='schedule'"><img src="img/schedule.png" class="promo-image" alt="schedule"/></div>
 
-  <p class="text-center">And many more...</p>
+    <p class="text-center">And many more...</p>
+  </div>
 
 </div>
 

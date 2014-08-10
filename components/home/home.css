@@ -1,3 +1,7 @@
+.promo {
+  min-height: 300px;
+}
+
 .promo-image {
   max-width: 100%;
 }
